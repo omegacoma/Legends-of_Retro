@@ -1,4 +1,4 @@
-# Legends of Retro Web v0.1.4
+# Legends of Retro Web v0.1.6
 
 Desktop parity/admin rebuild.
 
@@ -12,7 +12,7 @@ Desktop parity/admin rebuild.
 - Existing Challenge 01 data is not reset, resized, or migrated.
 - Privileged actions are server-side Vercel functions; service-role credentials are never shipped to the browser.
 
-## v0.1.5
+## v0.1.6
 - Fixed public Runner signup profile creation on Vercel by removing the unsupported server-side `https://esm.sh` import.
 - Runner profile API now uses Supabase Auth/REST directly with the server-only service-role key.
 - Signup now surfaces the actual API/Vercel error instead of only the generic “Runner profile could not be created” message.
