@@ -1,4 +1,4 @@
-# Legends of Retro Web v0.1.4
+# Legends of Retro Web v0.1.5
 
 Browser-first Legends of Retro using the same Supabase backend as the desktop app.
 
