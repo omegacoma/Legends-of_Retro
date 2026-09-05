@@ -1,0 +1,9 @@
+{
+  "name": "Legends of Retro",
+  "short_name": "Legends",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#090a12",
+  "theme_color": "#090a12",
+  "icons": [{"src":"/legends-logo.png","sizes":"512x512","type":"image/png","purpose":"any"}]
+}
