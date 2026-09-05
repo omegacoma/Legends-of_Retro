@@ -11,4 +11,14 @@ export default async function handler(req,res){if(req.method!=='POST')return res
  else if(a==='editChallenge'){await rest(service,`challenges?id=eq.${b.challengeId}`,{method:'PATCH',body:{name:b.name,ends_at:b.endsAt},prefer:'return=minimal'});await logAudit(service,user.id,'EDIT_CHALLENGE_SETTINGS',b.name)}
  else if(a==='reopenChallenge'){await rest(service,`challenges?id=eq.${b.challengeId}`,{method:'PATCH',body:{status:'Active',completed_at:null},prefer:'return=minimal'});await rest(service,`champions?challenge_id=eq.${b.challengeId}`,{method:'DELETE',prefer:'return=minimal'});await logAudit(service,user.id,'REOPEN_CHALLENGE','')}
  else if(a==='recalculate'){await recalc(service,b.challengeId);await logAudit(service,user.id,'RECALCULATE_STANDINGS','')}
+ else if(a==='editChallengeGame'){
+   const game=(await rest(service,`challenge_games?id=eq.${b.gameId}&challenge_id=eq.${b.challengeId}&select=id,slot,game_name`))?.[0];
+   if(!game)throw Error('Challenge game not found.');
+   const mode=String(b.submissionMode||'keep').toLowerCase();
+   if(!['keep','clear'].includes(mode))throw Error('Invalid submission handling mode.');
+   if(mode==='clear')await rest(service,`submissions?challenge_id=eq.${b.challengeId}&challenge_game_id=eq.${b.gameId}`,{method:'DELETE',prefer:'return=minimal'});
+   await rest(service,`challenge_games?id=eq.${b.gameId}&challenge_id=eq.${b.challengeId}`,{method:'PATCH',body:{game_name:b.gameName,platform:b.platform,goal_text:b.goalText},prefer:'return=minimal'});
+   await rest(service,`champions?challenge_id=eq.${b.challengeId}`,{method:'DELETE',prefer:'return=minimal'});
+   await logAudit(service,user.id,'EDIT_CHALLENGE_GAME',`slot=${game.slot}; ${game.game_name} -> ${b.gameName}; submissions=${mode}`)
+ }
  else throw Error('Unknown admin action.');return res.json({ok:true})}catch(e){sendError(res,e)}}

@@ -1,10 +1,10 @@
-# Legends of Retro Web v0.1.7
+# v0.1.8
 
-Deployment fix:
-- Adds an explicit Node build step.
-- Copies the static website into `dist/`.
-- Configures Vercel to publish `dist/` as the output directory.
-- Removes the unnecessary `/ -> /index.html` rewrite; Vercel serves `dist/index.html` as the homepage automatically.
-- Keeps `/api` serverless functions at the repository root.
-
-This avoids relying on Vercel's zero-build static auto-detection, which was producing a Ready deployment that returned `404: NOT_FOUND`.
+- Game of the Month now has its own countdown timer.
+- Admin can start/resume, stop/pause, reset to 30 days, end now, or change the monthly end date/time.
+- Game of the Month now has its own separate leaderboard and runner PB submissions.
+- Monthly results never affect the main Legends challenge totals or Champions.
+- Admin Challenge controls now show every active challenge game with an Edit / Replace action.
+- Replacing a challenge game lets Admin KEEP or CLEAR existing submissions for that slot.
+- Existing main challenge data is otherwise left intact.
+- Includes one-time Supabase migration: `supabase/003_monthly_timer_leaderboard.sql`.

@@ -1,4 +1,11 @@
-# Legends of Retro Web v0.1.7 deplot test 
+# Legends of Retro Web v0.1.8
+
+Adds a complete separate Game of the Month timer/leaderboard and lets Admin edit or replace individual games in the active challenge.
+
+## One-time database step for v0.1.8
+Run `supabase/003_monthly_timer_leaderboard.sql` once in the Supabase SQL Editor.
+
+# Legends of Retro Web v0.1.7
 
 Browser-first Legends of Retro using the same Supabase backend as the desktop app.
 
